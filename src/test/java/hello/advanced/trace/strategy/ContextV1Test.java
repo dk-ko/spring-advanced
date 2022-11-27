@@ -71,4 +71,32 @@ public class ContextV1Test {
         log.info("strategyLogic2={}", strategyLogic2.getClass());
         context2.execute();
     }
+
+    @Test
+    void strategyV3() {
+        final ContextV1 context1 = new ContextV1(new Strategy() {
+            @Override
+            public void call() {
+                log.info("비지니스 로직1 실행");
+            }
+        });
+        context1.execute();
+
+        final ContextV1 context2 = new ContextV1(new Strategy() {
+            @Override
+            public void call() {
+                log.info("비지니스 로직2 실행");
+            }
+        });
+        context2.execute();
+    }
+
+    @Test
+    void strategyV4() {
+        final ContextV1 context1 = new ContextV1(() -> log.info("비지니스 로직1 실행"));
+        context1.execute();
+
+        final ContextV1 context2 = new ContextV1(() -> log.info("비지니스 로직2 실행"));
+        context2.execute();
+    }
 }
