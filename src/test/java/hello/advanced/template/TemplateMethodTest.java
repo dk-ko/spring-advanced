@@ -45,4 +45,25 @@ public class TemplateMethodTest {
         AbstractTemplate template2 = new SubClassLogic2();
         template2.execute();
     }
+
+    @Test
+    void templateMethodV2() {
+        final AbstractTemplate template = new AbstractTemplate() {
+            @Override
+            protected void call() {
+                log.info("비지니스 로직1 실행");
+            }
+        };
+        log.info("클래스 이름1={}", template.getClass());
+        template.execute();
+
+        final AbstractTemplate template2 = new AbstractTemplate() {
+            @Override
+            protected void call() {
+                log.info("비지니스 로직2 실행");
+            }
+        };
+        log.info("클래스 이름2={}", template2.getClass()); // 임의의 이름
+        template2.execute();
+    }
 }
